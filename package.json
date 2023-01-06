@@ -1,0 +1,46 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "vite",
+        "build": "vite build"
+    },
+    "prettier": {
+        "singleQuote": true,
+        "tabWidth": 4,
+        "useTabs": false,
+        "trailingCommaPHP": true,
+        "bracketSameLine": true,
+        "proseWrap": "preserve",
+        "phpVersion": "8.1",
+        "overrides": [
+            {
+                "files": [
+                    "*.blade.php"
+                ],
+                "options": {
+                    "tabWidth": 4,
+                    "parser": "blade"
+                }
+            }
+        ]
+    },
+    "devDependencies": {
+        "@hotwired/stimulus": "^3.1.0",
+        "@hotwired/turbo": "^7.1.0",
+        "@popperjs/core": "^2.11.6",
+        "@prettier/plugin-php": "^0.19.2",
+        "@shufo/prettier-plugin-blade": "^1.8.4",
+        "axios": "^1.1.2",
+        "bootstrap": "^5.2.3",
+        "laravel-echo": "^1.11.3",
+        "laravel-vite-plugin": "^0.7.2",
+        "lodash": "^4.17.19",
+        "prettier": "^2.8.1",
+        "pusher-js": "^7.0.3",
+        "sass": "^1.57.1",
+        "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "postcss": "^8.0.9"
+    }
+}
