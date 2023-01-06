@@ -1,4 +1,5 @@
-window._ = require('lodash');
+import lodash from 'lodash';
+window._ = lodash;
 
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
@@ -6,7 +7,8 @@ window._ = require('lodash');
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = require('axios');
+import axios from 'axios';
+window.axios = axios;
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -26,3 +28,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+let token = document.head.querySelector('meta[name="csrf-token"]');
+
+window.addEventListener('turbo:before-fetch-request', (event) => {
+    if (token) {
+        event.detail.fetchOptions.headers['X-CSRF-TOKEN'] = token.content;
+    } else {
+        console.error(
+            'CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token'
+        );
+    }
+});
