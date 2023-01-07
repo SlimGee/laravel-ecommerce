@@ -36,8 +36,8 @@
                             </div>
                             <input id="password"
                                    type="password"
-                                   class="form-control"
-                                   name="password @error('password') is-invalid @enderror"
+                                   class="form-control @error('password') is-invalid @enderror"
+                                   name="password"
                                    tabindex="2"
                                    required>
                             @error('password')

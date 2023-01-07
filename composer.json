@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "flixtechs-labs/laravel-authorizer": "^0.0.2@alpha",
         "flixtechs-labs/turbo-laravel-helpers": "^1.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/fortify": "^1.15",

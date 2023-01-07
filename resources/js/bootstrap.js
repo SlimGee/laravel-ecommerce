@@ -29,6 +29,9 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: true
 // });
 
+import '@popperjs/core';
+import * as bootstrap from 'bootstrap';
+
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
 window.addEventListener('turbo:before-fetch-request', (event) => {
