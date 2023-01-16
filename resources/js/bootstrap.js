@@ -34,9 +34,10 @@ import * as bootstrap from 'bootstrap';
 
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
-window.addEventListener('turbo:before-fetch-request', (event) => {
+document.addEventListener('turbo:before-fetch-request', (e) => {
+    console.log(e.detail);
     if (token) {
-        event.detail.fetchOptions.headers['X-CSRF-TOKEN'] = token.content;
+        e.detail.fetchOptions.headers['X-CSRF-Token'] = token.content;
     } else {
         console.error(
             'CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token'

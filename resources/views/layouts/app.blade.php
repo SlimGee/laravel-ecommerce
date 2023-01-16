@@ -7,7 +7,7 @@
           name="viewport">
     <meta name="csrf-token"
           content="{{ csrf_token() }}">
-    <title>Ecommerce Dashboard</title>
+    <title>Ecommerce Dashboard - @yield('title')</title>
 
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -32,6 +32,7 @@
 
             @include('layouts.partials.footer')
         </div>
+        @stack('modals')
     </div>
 </body>
 

@@ -24,7 +24,7 @@
                                    autofocus>
                             @error('email')
                                 <div class="invalid-feedback">
-                                    Please fill in your email
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>
@@ -42,7 +42,7 @@
                                    required>
                             @error('password')
                                 <div class="invalid-feedback">
-                                    please fill in your password
+                                    {{ $message }}
                                 </div>
                             @enderror
                         </div>

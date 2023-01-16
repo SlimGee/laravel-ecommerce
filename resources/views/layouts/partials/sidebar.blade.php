@@ -14,6 +14,21 @@
                     <i class="fas fa-fire"></i> <span>Dashboard</span>
                 </a>
             </li>
+            <li class="menu-header">Users</li>
+            <li class="nav-item @if (Route::is('admin.users.*')) active @endif">
+                <a href="{{ route('admin.users.index') }}"
+                   class="nav-link"
+                   data-toggle="dropdown">
+                    <i class="fas fa-users"></i> <span>Users</span>
+                </a>
+            </li>
+            <li class="nav-item @if (Route::is('admin.roles.*')) active @endif">
+                <a href="{{ route('admin.roles.index') }}"
+                   class="nav-link"
+                   data-toggle="dropdown">
+                    <i class="fas fa-lock"></i> <span>Roles</span>
+                </a>
+            </li>
         </ul>
     </aside>
 </div>
