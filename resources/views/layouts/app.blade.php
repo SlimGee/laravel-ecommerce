@@ -13,7 +13,7 @@
           href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
           integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
           crossorigin="anonymous">
-
+    @routes
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
@@ -21,7 +21,7 @@
     <div id="app">
         <div class="main-wrapper">
             <div class="navbar-bg"></div>
-
+            @include('layouts.partials.flash')
             @include('layouts.partials.navbar')
 
             @include('layouts.partials.sidebar')

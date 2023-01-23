@@ -4,5 +4,18 @@
 
 import { application } from '../libs/stimulus'
 
+
+import FilterController from './filter_controller'
+application.register('filter', FilterController)
+
+import FlashController from './flash_controller'
+application.register('flash', FlashController)
+
 import HelloController from './hello_controller'
 application.register('hello', HelloController)
+
+import ObliterateController from './obliterate_controller'
+application.register('obliterate', ObliterateController)
+
+import ReloadController from './reload_controller'
+application.register('reload', ReloadController)

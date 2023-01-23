@@ -41,6 +41,9 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
-        "postcss": "^8.0.9"
+        "izitoast": "^1.4.0",
+        "postcss": "^8.0.9",
+        "stimulus-use": "^0.51.3",
+        "sweetalert2": "^11.7.0"
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RolePermissionController;
@@ -40,4 +41,6 @@ Route::prefix('admin')
         Route::post('/user/{user}/roles', UserRoleController::class)->name(
             'users.roles.assign',
         );
+
+        Route::resource('categories', CategoryController::class);
     });
