@@ -23,6 +23,13 @@
                 </a>
             </li>
 
+            <li class="nav-item @if (Route::is('admin.brands.*')) active @endif">
+                <a href="{{ route('admin.brands.index') }}"
+                   class="nav-link">
+                    <i class="fas fa-hashtag"></i> <span>Brands</span>
+                </a>
+            </li>
+
             <li class="menu-header">Users</li>
             <li class="nav-item @if (Route::is('admin.users.*')) active @endif">
                 <a href="{{ route('admin.users.index') }}"

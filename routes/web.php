@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\RoleController;
@@ -43,4 +44,5 @@ Route::prefix('admin')
         );
 
         Route::resource('categories', CategoryController::class);
+        Route::resource('brands', BrandController::class);
     });
