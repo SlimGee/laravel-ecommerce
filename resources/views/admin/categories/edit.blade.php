@@ -80,7 +80,7 @@
                                     <label for="description">Description</label>
                                     <textarea name="description"
                                               id="description"
-                                              class="form-control @error('description') is-invalid @enderror ">{{ old('description', $category->descriptions) }}</textarea>
+                                              class="form-control @error('description') is-invalid @enderror ">{{ old('description', $category->description) }}</textarea>
 
                                     @error('description')
                                         <span class="invalid-feedback">
