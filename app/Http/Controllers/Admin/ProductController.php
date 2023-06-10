@@ -5,14 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\File;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Storage;
+use Spatie\QueryBuilder\AllowedFilter;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class ProductController extends Controller
 {
@@ -21,9 +25,12 @@ class ProductController extends Controller
      *
      * @return Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate();
+        $products = QueryBuilder::for(Product::class)
+            ->allowedFilters([AllowedFilter::scope('search', 'whereScout')])
+            ->paginate()
+            ->appends($request->query());
 
         return view('admin.products.index', [
             'products' => $products,
@@ -69,7 +76,7 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param Product $product
      * @return Response
      */
     public function show(Product $product)
@@ -80,7 +87,7 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Product  $product
+     * @param Product $product
      * @return Response
      */
     public function edit(Product $product)
@@ -92,7 +99,7 @@ class ProductController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \App\Http\Requests\UpdateProductRequest  $request
-     * @param  \App\Models\Product  $product
+     * @param Product $product
      * @return Response
      */
     public function update(UpdateProductRequest $request, Product $product)
@@ -103,11 +110,16 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
-     * @return Response
+     * @param Product $product
+     * @return RedirectResponse
      */
     public function destroy(Product $product)
     {
-        //
+        $product->delete();
+
+        return to_route('admin.products.index')->with(
+            'success',
+            'Product was successfully deleted',
+        );
     }
 }
