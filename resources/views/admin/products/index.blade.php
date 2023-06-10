@@ -94,14 +94,18 @@
                                                     @endif
                                                 </td>
                                                 <td>
-                                                    <div>
+                                                    <div {{ stimulus_controller('obliterate') }}>
                                                         <a href='{{ route('admin.products.edit', $product) }}'
                                                            class='btn btn-primary'>Edit</a>
-                                                        <a data-turbo-method='delete'
-                                                           href='{{ route('admin.products.destroy', $product) }}'
-                                                           class='btn btn-danger'>
-                                                            Delete
-                                                        </a>
+
+                                                        <button {{ stimulus_action('obliterate', 'handle') }}
+                                                                class='btn btn-danger'>Delete</button>
+                                                        <form {{ stimulus_target('obliterate', 'form') }}
+                                                              method="POST"
+                                                              action="{{ route('admin.products.destroy', $product) }}">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>

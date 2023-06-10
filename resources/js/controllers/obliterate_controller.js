@@ -12,6 +12,7 @@ export default class extends Controller {
     };
 
     handle() {
+        console.log('Obliterate Controller');
         Swal.fire({
             title: 'Are you sure?',
             text:

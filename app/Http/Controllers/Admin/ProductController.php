@@ -58,7 +58,14 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $product = Product::create($request->safe()->except(['images']));
+        $product = Product::create(
+            $request
+                ->safe()
+                ->collect()
+                ->filter(fn($value) => !is_null($value))
+                ->except(['images'])
+                ->all(),
+        );
 
         collect($request->validated('images'))->each(function ($image) use (
             $product,
@@ -88,23 +95,48 @@ class ProductController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param Product $product
-     * @return Response
+     * @return Renderable
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+
+        return view('admin.products.edit', [
+            'product' => $product,
+            'categories' => $categories,
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateProductRequest  $request
+     * @param UpdateProductRequest $request
      * @param Product $product
-     * @return Response
+     * @return RedirectResponse
+     * @throws Exception
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        //
+        $product->update(
+            $request
+                ->safe()
+                ->collect()
+                ->filter(fn($value) => !is_null($value))
+                ->except(['images'])
+                ->all(),
+        );
+
+        collect($request->validated('images'))->each(function ($image) use (
+            $product,
+        ) {
+            $product->attachMedia(new File(storage_path('app/' . $image)));
+            Storage::delete($image);
+        });
+
+        return to_route('admin.products.index')->with(
+            'success',
+            'Product was successfully updated',
+        );
     }
 
     /**
