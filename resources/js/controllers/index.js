@@ -8,6 +8,9 @@ import { application } from '../libs/stimulus'
 import CkeditorController from './ckeditor_controller'
 application.register('ckeditor', CkeditorController)
 
+import FieldsController from './fields_controller'
+application.register('fields', FieldsController)
+
 import FilepondController from './filepond_controller'
 application.register('filepond', FilepondController)
 
@@ -25,6 +28,9 @@ application.register('inventory', InventoryController)
 
 import ObliterateController from './obliterate_controller'
 application.register('obliterate', ObliterateController)
+
+import OptionsController from './options_controller'
+application.register('options', OptionsController)
 
 import ReloadController from './reload_controller'
 application.register('reload', ReloadController)

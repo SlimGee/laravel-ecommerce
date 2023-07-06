@@ -1,0 +1,24 @@
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+@import "bootstrap/scss/maps";
+@import "bootstrap/scss/utilities";
+
+
+$utilities: map-merge(
+        $utilities,
+        (
+            "cursor": (
+                property: cursor,
+                state: hover,
+                values: auto default pointer grab grabbing
+            ),
+            "background-color": map-merge(
+                    map-get($utilities, "background-color"),
+                    ( state: hover )
+            ),
+            "color": map-merge(
+                    map-get($utilities, "color"),
+                    ( state: hover )
+            ),
+        )
+)
