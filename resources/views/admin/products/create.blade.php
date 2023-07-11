@@ -282,7 +282,9 @@ is-invalid
                         </div>
 
                         <div class="card rounded-lg"
-                             {{ stimulus_controller('options') }}>
+                             {{ stimulus_controller('options', [
+                                 'state' => is_array(old('options', null)),
+                             ]) }}>
                             <div class="card-header">
                                 <h4>Options</h4>
                             </div>
@@ -293,6 +295,7 @@ is-invalid
                                         <input type="checkbox"
                                                name="custom-switch-checkbox"
                                                class="custom-switch-input"
+                                               @checked(is_array(old('options', null)))
                                                {{ stimulus_action('options', 'toggle') }}>
                                         <span class="custom-switch-indicator"></span>
                                         <span class="custom-switch-description">This product has options, like size or
@@ -301,6 +304,13 @@ is-invalid
                                 </div>
 
                                 @include('admin.options.create')
+
+                                @foreach (old('options', []) as $option)
+                                    <turbo-frame id='option_{{ $option }}'
+                                                 src="{{ route('admin.options.show', $option) }}"
+                                                 loading="lazy">
+                                    </turbo-frame>
+                                @endforeach
 
                             </div>
 

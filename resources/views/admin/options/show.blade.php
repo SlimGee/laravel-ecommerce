@@ -22,6 +22,6 @@
 
     <input form="storeProduct"
            type="hidden"
-           name="options[{{ $option->id }}]"
+           name="options[]"
            value="{{ $option->id }}">
 </x-turbo-frame>

@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
+        "chefhasteeth/pipeline": "^1.0",
         "cloudinary-labs/cloudinary-laravel": "^2.0",
         "flixtechs-labs/laravel-authorizer": "^0.0.2@alpha",
         "flixtechs-labs/stimulus-extra": "^0.0.2",
@@ -16,6 +17,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/scout": "^9.8",
         "laravel/tinker": "^2.7",
+        "lorisleiva/laravel-actions": "^2.6",
         "spatie/laravel-query-builder": "^5.1",
         "spatie/laravel-sluggable": "^3.4",
         "tightenco/ziggy": "^1.5"

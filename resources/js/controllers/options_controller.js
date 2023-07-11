@@ -13,6 +13,9 @@ export default class extends Controller {
 
     connect() {
         this.state = this.stateValue;
+        if (this.state) {
+            this.footerTarget.classList.remove('d-none');
+        }
     }
 
     toggle(e) {
