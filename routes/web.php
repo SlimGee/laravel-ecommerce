@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserPermissionController;
 use App\Http\Controllers\Admin\UserRoleController;
 use App\Http\Controllers\Admin\OptionController;
+use App\Http\Controllers\Admin\VariationController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -50,6 +51,7 @@ Route::prefix('admin')
         Route::resource('brands', BrandController::class);
         Route::resource('products', ProductController::class);
         Route::resource('options', OptionController::class);
+        Route::resource('variations', VariationController::class);
 
         Route::post('/images/{path?}', [ImageController::class, 'store'])->name(
             'images.store',

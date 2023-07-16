@@ -37,4 +37,14 @@ class Option extends Model
     {
         return $this->hasMany(Value::class);
     }
+
+    /**
+     * Get the variants that belong to this option
+     *
+     * @return HasMany
+     */
+    public function variations(): HasMany
+    {
+        return $this->hasMany(Variation::class);
+    }
 }

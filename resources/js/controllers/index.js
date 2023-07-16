@@ -37,3 +37,6 @@ application.register('reload', ReloadController)
 
 import SummernoteController from './summernote_controller'
 application.register('summernote', SummernoteController)
+
+import VariationController from './variation_controller'
+application.register('variation', VariationController)

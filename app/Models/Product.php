@@ -53,6 +53,16 @@ class Product extends Model
         return $this->belongsToMany(Option::class);
     }
 
+    /**
+     * Get the variations that belong to this product
+     *
+     * @return BelongsToMany
+     */
+    public function variations(): BelongsToMany
+    {
+        return $this->belongsToMany(Variation::class);
+    }
+
     /*
      * Get the indexable data array for the model.
      *

@@ -325,10 +325,28 @@ is-invalid
 
                         <div class="card rounded-lg">
                             <div class="card-header">
-                                <h4>Variants</h4>
+                                <h4>Variations</h4>
                             </div>
                             <div class="card-body">
-                                {{--             Product variation fields here, color and stuff              --}}
+                                <div class="row mb-3">
+                                    <div class="col-md-3 font-weight-bold">
+                                        Variation
+                                    </div>
+                                    <div class="col-md-3 font-weight-bold">
+                                        Price
+                                    </div>
+                                    <div class="col-md-3 font-weight-bold">
+                                        Quantity
+                                    </div>
+                                    <div class="col-md-3 font-weight-bold">
+                                        SKU
+                                    </div>
+                                </div>
+
+                                <div class=""
+                                     id="variations">
+
+                                </div>
                             </div>
                         </div>
 

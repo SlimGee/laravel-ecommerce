@@ -24,12 +24,27 @@ class OptionController extends Controller
 
         $option->values()->createMany($request->all()['values']);
 
+        $option
+            ->variations()
+            ->createMany(
+                $option->values->map(
+                    fn($value) => ['variant' => $value->value],
+                ),
+            );
+
         return response()->turboStream([
             response()
                 ->turboStream()
                 ->target("turbo{$request->input('turbo')}")
                 ->action('replace')
                 ->view('admin.options.show', ['option' => $option]),
+            response()
+                ->turboStream()
+                ->target('variations')
+                ->action('append')
+                ->view('admin.variations.index', [
+                    'variations' => $option->variations,
+                ]),
         ]);
     }
 

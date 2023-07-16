@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Actions\Product\AttachImages;
+use App\Actions\Product\AttachVariations;
 use App\Actions\Product\LinkOption;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
@@ -69,7 +70,9 @@ class ProductController extends Controller
             )
             ->through([
                 fn($passable) => Product::create(
-                    $passable->except(['images', 'options'])->all(),
+                    $passable
+                        ->except(['images', 'options', 'variations'])
+                        ->all(),
                 ),
                 fn($passable) => LinkOption::run(
                     $passable,
@@ -78,6 +81,10 @@ class ProductController extends Controller
                 fn($passable) => AttachImages::run(
                     $passable,
                     $request->validated('images'),
+                ),
+                fn($passable) => AttachVariations::run(
+                    $passable,
+                    $request->validated('variations', []),
                 ),
             ])
             ->then(
@@ -135,7 +142,9 @@ class ProductController extends Controller
             ->through([
                 function ($passable) use ($product) {
                     $product->update(
-                        $passable->except(['images', 'options'])->all(),
+                        $passable
+                            ->except(['images', 'options', 'variations'])
+                            ->all(),
                     );
 
                     return $product;
@@ -147,6 +156,10 @@ class ProductController extends Controller
                 fn($passable) => AttachImages::run(
                     $passable,
                     $request->validated('images', []),
+                ),
+                fn($passable) => AttachVariations::run(
+                    $passable,
+                    $request->validated('variations', []),
                 ),
             ])
             ->then(
