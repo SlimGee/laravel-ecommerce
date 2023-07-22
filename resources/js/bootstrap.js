@@ -35,7 +35,6 @@ import * as bootstrap from 'bootstrap';
 let token = document.head.querySelector('meta[name="csrf-token"]');
 
 document.addEventListener('turbo:before-fetch-request', (e) => {
-    console.log(e.detail);
     if (token) {
         e.detail.fetchOptions.headers['X-CSRF-Token'] = token.content;
     } else {

@@ -54,6 +54,10 @@ class StoreProductRequest extends FormRequest
             'status' => 'required|string|in:active,draft,review',
             'images' => 'nullable|array',
             'images.*' => 'string',
+            'options' => 'nullable|array',
+            'options.*' => 'int|exists:options,id',
+            'variations' => 'nullable|array',
+            'variations.*' => 'int|exists:variations,id',
         ];
     }
 }

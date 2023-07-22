@@ -284,12 +284,74 @@ is-invalid
                             </div>
                         </div>
 
+                        <div class="card rounded-lg"
+                             {{ stimulus_controller('options', [
+                                 'state' => count(old('options', $product->options)),
+                             ]) }}>
+                            <div class="card-header">
+                                <h4>Options</h4>
+                            </div>
+                            <div class="card-body"
+                                 {{ stimulus_target('options', 'card') }}>
+                                <div class="form-group mb-3">
+                                    <label class="custom-switch pl-0">
+                                        <input type="checkbox"
+                                               name="custom-switch-checkbox"
+                                               class="custom-switch-input"
+                                               @checked(count(old('options', $product->options)))
+                                               {{ stimulus_action('options', 'toggle') }}>
+                                        <span class="custom-switch-indicator"></span>
+                                        <span class="custom-switch-description">This product has options, like size or
+                                            color</span>
+                                    </label>
+                                </div>
+
+                                @include('admin.options.create')
+
+                                @foreach (old('options', $product->options) as $option)
+                                    <turbo-frame id='option_{{ $option?->id ?? $option }}'
+                                                 src="{{ route('admin.options.show', $option) }}"
+                                                 loading="lazy">
+                                    </turbo-frame>
+                                @endforeach
+
+                            </div>
+
+                            <div class="card-footer border-top d-none"
+                                 {{ stimulus_target('options', 'footer') }}>
+                                <button class="btn btn-link btn-lg"
+                                        {{ stimulus_action('options', 'addForm') }}>
+                                    <i class="fa fa-plus"></i> Add another one
+                                </button>
+                            </div>
+                        </div>
+
                         <div class="card rounded-lg">
                             <div class="card-header">
-                                <h4>Variants</h4>
+                                <h4>Variations</h4>
                             </div>
                             <div class="card-body">
-                                {{--             Product variation fields here, color and stuff              --}}
+                                <div class="row mb-3">
+                                    <div class="col-md-3 font-weight-bold">
+                                        Variation
+                                    </div>
+                                    <div class="col-md-3 font-weight-bold">
+                                        Price
+                                    </div>
+                                    <div class="col-md-3 font-weight-bold">
+                                        Quantity
+                                    </div>
+                                    <div class="col-md-3 font-weight-bold">
+                                        SKU
+                                    </div>
+                                </div>
+                                @include('admin.variations.index', [
+                                    'variations' => $product->variations ?? [],
+                                ])
+                                <div class=""
+                                     id="variations">
+
+                                </div>
                             </div>
                         </div>
 

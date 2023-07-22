@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\Product\AttachImages;
+use App\Actions\Product\AttachVariations;
+use App\Actions\Product\LinkOption;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
-use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use Chefhasteeth\Pipeline\Pipeline;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\File;
@@ -58,26 +61,38 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $product = Product::create(
-            $request
-                ->safe()
-                ->collect()
-                ->filter(fn($value) => !is_null($value))
-                ->except(['images'])
-                ->all(),
-        );
-
-        collect($request->validated('images'))->each(function ($image) use (
-            $product,
-        ) {
-            $product->attachMedia(new File(storage_path('app/' . $image)));
-            Storage::delete($image);
-        });
-
-        return to_route('admin.products.index')->with(
-            'success',
-            'Product was successfully created',
-        );
+        return Pipeline::make()
+            ->send(
+                $request
+                    ->safe()
+                    ->collect()
+                    ->filter(),
+            )
+            ->through([
+                fn($passable) => Product::create(
+                    $passable
+                        ->except(['images', 'options', 'variations'])
+                        ->all(),
+                ),
+                fn($passable) => LinkOption::run(
+                    $passable,
+                    $request->validated('options'),
+                ),
+                fn($passable) => AttachImages::run(
+                    $passable,
+                    $request->validated('images'),
+                ),
+                fn($passable) => AttachVariations::run(
+                    $passable,
+                    $request->validated('variations', []),
+                ),
+            ])
+            ->then(
+                fn() => to_route('admin.products.index')->with(
+                    'success',
+                    'Product was successfully created',
+                ),
+            );
     }
 
     /**
@@ -117,26 +132,42 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->update(
-            $request
-                ->safe()
-                ->collect()
-                ->filter(fn($value) => !is_null($value))
-                ->except(['images'])
-                ->all(),
-        );
+        return Pipeline::make()
+            ->send(
+                $request
+                    ->safe()
+                    ->collect()
+                    ->filter(),
+            )
+            ->through([
+                function ($passable) use ($product) {
+                    $product->update(
+                        $passable
+                            ->except(['images', 'options', 'variations'])
+                            ->all(),
+                    );
 
-        collect($request->validated('images'))->each(function ($image) use (
-            $product,
-        ) {
-            $product->attachMedia(new File(storage_path('app/' . $image)));
-            Storage::delete($image);
-        });
-
-        return to_route('admin.products.index')->with(
-            'success',
-            'Product was successfully updated',
-        );
+                    return $product;
+                },
+                fn($passable) => LinkOption::run(
+                    $passable,
+                    $request->validated('options'),
+                ),
+                fn($passable) => AttachImages::run(
+                    $passable,
+                    $request->validated('images', []),
+                ),
+                fn($passable) => AttachVariations::run(
+                    $passable,
+                    $request->validated('variations', []),
+                ),
+            ])
+            ->then(
+                fn() => to_route('admin.products.index')->with(
+                    'success',
+                    'Product was successfully updated',
+                ),
+            );
     }
 
     /**
