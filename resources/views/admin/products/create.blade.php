@@ -350,14 +350,39 @@ is-invalid
                             </div>
                         </div>
 
-                        <div class="card rounded-lg">
-                            <div class="card-header">
-                                <h4>Search Engine Optimization</h4>
-                            </div>
-                            <div class="card-body">
-                                {{--              SEO Fields here              --}}
-                            </div>
-                        </div>
+<div class="card rounded-lg">
+    <div class="card-header">
+        <h4>Search Engine Optimization</h4>
+    </div>
+    <div class="card-body">
+        <div class='form-group'>
+            <label for='canonical_url' class='form-label'>
+                Canonical URL
+            </label>
+            <x-input name="canonical_url" error='canonical_url' form="storeProduct" :value="old('canonical_url')" />
+        </div>
+        <div class='form-group'>
+            <label for='seo_title' class='form-label'>
+                SEO Title
+            </label>
+            <x-input name="seo_title" error='seo_title' form="storeProduct" :value="old('seo_title', '')" />
+        </div>
+
+        <div class='form-group'>
+            <label for='seo_keywords' class='form-label'>
+                SEO Keywords
+            </label>
+            <x-input name="seo_keywords" error='seo_keywords' form="storeProduct" :value='old("seo_keywords","")' />
+        </div>
+
+        <div class='form-group'>
+            <label class='form-label' for='seo_description'>
+                SEO Description
+            </label>
+            <textarea name="seo_description" id="seo_description" form="storeProduct" class='form-control'>{{ old('seo_description', '') }}</textarea>
+        </div>
+    </div>
+</div>
                     </div>
                     <div class="col-12 col-md-5">
                         <div class="card rounded-lg">

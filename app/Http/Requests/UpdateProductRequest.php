@@ -60,6 +60,10 @@ class UpdateProductRequest extends FormRequest
             'options.*' => 'int|exists:options,id',
             'variations' => 'nullable|array',
             'variations.*' => 'int|exists:variations,id',
+'canonical_url' => 'sometimes|nullable|string|max:255|url|active_url',
+'seo_title' => 'sometimes|nullable|string|max:255',
+'seo_description' => 'sometimes|nullable|string|max:255',
+'seo_keywords' => 'sometimes|nullable|string|max:255'
         ];
     }
 }

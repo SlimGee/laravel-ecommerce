@@ -63,3 +63,4 @@ Route::prefix('admin')
             'images.destroy',
         );
     });
+

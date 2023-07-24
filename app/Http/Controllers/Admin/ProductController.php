@@ -76,11 +76,11 @@ class ProductController extends Controller
                 ),
                 fn($passable) => LinkOption::run(
                     $passable,
-                    $request->validated('options'),
+                    $request->validated('options', []),
                 ),
                 fn($passable) => AttachImages::run(
                     $passable,
-                    $request->validated('images'),
+                    $request->validated('images', []),
                 ),
                 fn($passable) => AttachVariations::run(
                     $passable,
@@ -132,6 +132,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
+
         return Pipeline::make()
             ->send(
                 $request
@@ -151,7 +152,7 @@ class ProductController extends Controller
                 },
                 fn($passable) => LinkOption::run(
                     $passable,
-                    $request->validated('options'),
+                    $request->validated('options', []),
                 ),
                 fn($passable) => AttachImages::run(
                     $passable,
