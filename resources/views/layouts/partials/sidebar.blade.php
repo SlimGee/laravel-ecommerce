@@ -37,6 +37,13 @@
                 </a>
             </li>
 
+
+<li class="nav-item @if (Route::is('admin.settings.*')) active @endif">
+    <a href='{{ route('admin.settings.index') }}' class='nav-link'>
+        <i class='fas fa-wrench'></i> <span>Settings</span>
+    </a>
+</li>
+
             <li class="menu-header">Users</li>
             <li class="nav-item @if (Route::is('admin.users.*')) active @endif">
                 <a href="{{ route('admin.users.index') }}"

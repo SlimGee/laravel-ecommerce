@@ -2,11 +2,14 @@
 
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\GeneralSettingsController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\Admin\LegalSettingsController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RolePermissionController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserPermissionController;
 use App\Http\Controllers\Admin\UserRoleController;
@@ -62,5 +65,20 @@ Route::prefix('admin')
         Route::delete('/images', [ImageController::class, 'destroy'])->name(
             'images.destroy',
         );
+
+        Route::get('/settings', [SettingsController::class, 'index'])->name(
+            'settings.index',
+        );
+
+        Route::get('/settings/general', [GeneralSettingsController::class, 'show'])->name(
+            'settings.general.show',
+        );
+
+        Route::patch('/settings/general', [GeneralSettingsController::class, 'update'])->name(
+            'settings.general.update',
+        );
+
+Route::get('/settings/legal', [LegalSettingsController::class, 'index'])->name('settings.legal.show');
+Route::patch('/settings/legal', [LegalSettingsController::class, 'update'])->name('settings.legal.update');
     });
 
