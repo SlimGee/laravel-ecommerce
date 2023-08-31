@@ -8,8 +8,6 @@ class UpdateProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -18,17 +16,13 @@ class UpdateProductRequest extends FormRequest
 
     /**
      * Prepare input for validation
-     *
-     * @return void
      */
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'track_quantity' =>
-                $this->has('track_quantity') &&
+            'track_quantity' => $this->has('track_quantity') &&
                 $this->input('track_quantity') == 'on',
-            'sell_out_of_stock' =>
-                $this->has('sell_out_of_stock') &&
+            'sell_out_of_stock' => $this->has('sell_out_of_stock') &&
                 $this->input('sell_out_of_stock') == 'on',
         ]);
     }
@@ -43,8 +37,7 @@ class UpdateProductRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'description' => 'required|string',
-            'sku' =>
-                'required|string|unique:products,sku,' .
+            'sku' => 'required|string|unique:products,sku,'.
                 $this->route('product')->id,
             'track_quantity' => 'sometimes|nullable|boolean',
             'quantity' => 'required_if:track_quantity,true|nullable|int',
@@ -60,10 +53,10 @@ class UpdateProductRequest extends FormRequest
             'options.*' => 'int|exists:options,id',
             'variations' => 'nullable|array',
             'variations.*' => 'int|exists:variations,id',
-'canonical_url' => 'sometimes|nullable|string|max:255|url|active_url',
-'seo_title' => 'sometimes|nullable|string|max:255',
-'seo_description' => 'sometimes|nullable|string|max:255',
-'seo_keywords' => 'sometimes|nullable|string|max:255'
+            'canonical_url' => 'sometimes|nullable|string|max:255|url|active_url',
+            'seo_title' => 'sometimes|nullable|string|max:255',
+            'seo_description' => 'sometimes|nullable|string|max:255',
+            'seo_keywords' => 'sometimes|nullable|string|max:255',
         ];
     }
 }

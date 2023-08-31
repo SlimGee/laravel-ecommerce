@@ -22,9 +22,6 @@ class Brand extends Model
      */
     protected $guarded = [];
 
-    /**
-     * @return SlugOptions
-     */
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
@@ -34,8 +31,6 @@ class Brand extends Model
 
     /**
      * Get the indexable data array for the model.
-     *
-     * @return array
      */
     public function toSearchableArray(): array
     {
@@ -47,10 +42,6 @@ class Brand extends Model
 
     /**
      * Scope a query to only include listings that are returned by scout
-     *
-     * @param Builder $query
-     * @param string $search
-     * @return Builder
      */
     public function scopeWhereScout(Builder $query, string $search): Builder
     {

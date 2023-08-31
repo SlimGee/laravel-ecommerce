@@ -14,7 +14,7 @@ class AttachImages
     public function handle(Product $product, array $images): Product
     {
         collect($images)->each(function ($image) use ($product) {
-            $product->attachMedia(new File(storage_path('app/' . $image)));
+            $product->attachMedia(new File(storage_path('app/'.$image)));
             Storage::delete($image);
         });
 

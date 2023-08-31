@@ -15,8 +15,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user index page is accessible to super admins.
-     *
-     * @return void
      */
     public function test_can_see_admin_user_index_page_if_user_is_super_admin(): void
     {
@@ -30,8 +28,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that a user cannot see the admin user index page if they are not a super admin.
-     *
-     * @return void
      */
     public function test_cannot_see_admin_user_index_page_if_user_is_not_super_admin(): void
     {
@@ -42,8 +38,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the user is redirected to the login page if they are not logged in.
-     *
-     * @return void
      */
     public function test_cannot_see_admin_user_index_page_if_user_is_not_logged_in(): void
     {
@@ -52,8 +46,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user index page is accessible if user has the permission
-     *
-     * @return void
      */
     public function test_can_see_admin_user_index_page_if_user_has_permission(): void
     {
@@ -72,8 +64,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user create page is accessible to super admins.
-     *
-     * @return void
      */
     public function test_can_display_create_user_page_if_user_is_super_admin(): void
     {
@@ -86,8 +76,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that a user cannot see the admin user create page if they are not a super admin.
-     *
-     * @return void
      */
     public function test_cannot_display_create_user_page_if_user_is_not_super_admin(): void
     {
@@ -98,8 +86,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the user is redirected to the login page if they are not logged in.
-     *
-     * @return void
      */
     public function test_cannot_display_create_user_page_if_user_is_not_logged_in(): void
     {
@@ -108,8 +94,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user create page is accessible if user has the permission
-     *
-     * @return void
      */
     public function test_can_display_create_user_page_if_user_has_permission(): void
     {
@@ -128,8 +112,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user create page is not accessible if user does not have the permission
-     *
-     * @return void
      */
     public function test_cannot_display_create_user_page_if_user_does_not_have_permission(): void
     {
@@ -142,8 +124,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user store page is accessible to super admins.
-     *
-     * @return void
      */
     public function test_can_store_user_if_user_is_super_admin(): void
     {
@@ -163,8 +143,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that a user cannot store a user if they are not a super admin.
-     *
-     * @return void
      */
     public function test_cannot_store_user_if_user_is_not_super_admin(): void
     {
@@ -180,8 +158,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the user is redirected to the login page if they are not logged in.
-     *
-     * @return void
      */
     public function test_cannot_store_user_if_user_is_not_logged_in(): void
     {
@@ -195,8 +171,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user store page is accessible if user has the permission
-     *
-     * @return void
      */
     public function test_can_store_user_if_user_has_permission(): void
     {
@@ -222,8 +196,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user store page is not accessible if user does not have the permission
-     *
-     * @return void
      */
     public function test_cannot_store_user_if_user_does_not_have_permission(): void
     {
@@ -241,8 +213,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the request is validated when creating a user.
-     *
-     * @return void
      */
     public function test_can_validate_user_store_request(): void
     {
@@ -258,8 +228,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user edit page is accessible to super admins.
-     *
-     * @return void
      */
     public function test_can_display_edit_user_page_if_user_is_super_admin(): void
     {
@@ -274,10 +242,7 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that a user cannot see the admin user edit page if they are not a super admin.
-     *
-     * @return void
      */
-
     public function test_cannot_display_edit_user_page_if_user_is_not_super_admin(): void
     {
         $user = $this->user();
@@ -289,8 +254,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the user is redirected to the login page if they are not logged in.
-     *
-     * @return void
      */
     public function test_cannot_display_edit_user_page_if_user_is_not_logged_in(): void
     {
@@ -303,8 +266,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user edit page is accessible if user has the permission
-     *
-     * @return void
      */
     public function test_can_display_edit_user_page_if_user_has_permission(): void
     {
@@ -323,8 +284,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user edit page is not accessible if user does not have the permission
-     *
-     * @return void
      */
     public function test_cannot_display_edit_user_page_if_user_does_not_have_permission(): void
     {
@@ -337,8 +296,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user update page is accessible to super admins.
-     *
-     * @return void
      */
     public function test_can_update_user_if_user_is_super_admin(): void
     {
@@ -359,8 +316,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that a user cannot update a user if they are not a super admin.
-     *
-     * @return void
      */
     public function test_cannot_update_user_if_user_is_not_super_admin(): void
     {
@@ -379,8 +334,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the user is redirected to the login page if they are not logged in.
-     *
-     * @return void
      */
     public function test_cannot_update_user_if_user_is_not_logged_in(): void
     {
@@ -394,8 +347,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user update page is accessible if user has the permission
-     *
-     * @return void
      */
     public function test_can_update_user_if_user_has_permission(): void
     {
@@ -420,8 +371,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user update page is not accessible if user does not have the permission
-     *
-     * @return void
      */
     public function test_cannot_update_user_if_user_does_not_have_permission(): void
     {
@@ -437,8 +386,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user delete page is accessible to super admins.
-     *
-     * @return void
      */
     public function test_can_delete_user_if_user_is_super_admin(): void
     {
@@ -453,8 +400,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that a user cannot delete a user if they are not a super admin.
-     *
-     * @return void
      */
     public function test_cannot_delete_user_if_user_is_not_super_admin(): void
     {
@@ -467,8 +412,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the user is redirected to the login page if they are not logged in.
-     *
-     * @return void
      */
     public function test_cannot_delete_user_if_user_is_not_logged_in(): void
     {
@@ -481,8 +424,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user delete page is accessible if user has the permission
-     *
-     * @return void
      */
     public function test_can_delete_user_if_user_has_permission(): void
     {
@@ -501,8 +442,6 @@ class UserControllerTest extends TestCase
 
     /**
      * Test that the admin user delete page is not accessible if user does not have the permission
-     *
-     * @return void
      */
     public function test_cannot_delete_user_if_user_does_not_have_permission(): void
     {

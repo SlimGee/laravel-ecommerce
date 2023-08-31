@@ -66,7 +66,6 @@ class GeneralSettings extends Settings
      */
     public bool $active;
 
-
     public static function group(): string
     {
         return 'general';

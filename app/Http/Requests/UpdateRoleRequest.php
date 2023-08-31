@@ -8,8 +8,6 @@ class UpdateRoleRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -24,8 +22,7 @@ class UpdateRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' =>
-                'required|string|unique:roles,name,' . $this->route('role')->id,
+            'name' => 'required|string|unique:roles,name,'.$this->route('role')->id,
             'guard' => 'sometimes|nullable|string',
         ];
     }

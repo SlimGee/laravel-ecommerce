@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreVariationRequest;
 use App\Http\Requests\UpdateVariationRequest;
 use App\Models\Variation;
 use Illuminate\Contracts\Support\Renderable;
@@ -19,7 +18,6 @@ class VariationController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Variation $variation
      * @return Renderable
      */
     public function show(Variation $variation)
@@ -30,8 +28,6 @@ class VariationController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateVariationRequest $request
-     * @param Variation $variation
      * @return RedirectResponse
      */
     public function update(

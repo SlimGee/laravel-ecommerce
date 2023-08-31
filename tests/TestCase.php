@@ -23,8 +23,6 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Create a super admin user.
-     *
-     * @return User
      */
     protected function superAdminUser(): User
     {
@@ -46,8 +44,6 @@ abstract class TestCase extends BaseTestCase
 
     /**
      * Create a user.
-     *
-     * @return User
      */
     protected function user(): User
     {

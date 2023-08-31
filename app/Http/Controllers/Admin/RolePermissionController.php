@@ -6,23 +6,17 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 
 class RolePermissionController extends Controller
 {
     /**
      * Handle the incoming request.
-     *
-     * @param Request $request
-     * @param Role $role
-     * @return RedirectResponse
      */
     public function __invoke(Request $request, Role $role): RedirectResponse
     {
         $data = $request->validate([
             'permissions' => 'required|array',
-            'permissions.*' =>
-                'sometimes|string|exists:\Spatie\Permission\Models\Permission,name',
+            'permissions.*' => 'sometimes|string|exists:\Spatie\Permission\Models\Permission,name',
         ]);
 
         $role->syncPermissions($data['permissions']);

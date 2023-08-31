@@ -7,7 +7,6 @@ use App\Http\Requests\StoreOptionRequest;
 use App\Http\Requests\UpdateOptionRequest;
 use App\Models\Option;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 
 class OptionController extends Controller
@@ -15,7 +14,6 @@ class OptionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreOptionRequest $request
      * @return RedirectResponse
      */
     public function store(StoreOptionRequest $request)
@@ -28,7 +26,7 @@ class OptionController extends Controller
             ->variations()
             ->createMany(
                 $option->values->map(
-                    fn($value) => ['variant' => $value->value],
+                    fn ($value) => ['variant' => $value->value],
                 ),
             );
 
@@ -51,7 +49,6 @@ class OptionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Option $option
      * @return Renderable
      */
     public function show(Option $option)
@@ -64,7 +61,6 @@ class OptionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Option $option
      * @return Renderable
      */
     public function edit(Option $option)
@@ -77,8 +73,6 @@ class OptionController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateOptionRequest $request
-     * @param Option $option
      * @return Renderable
      */
     public function update(UpdateOptionRequest $request, Option $option)

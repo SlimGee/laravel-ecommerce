@@ -12,8 +12,6 @@ class CategoryControllerTest extends TestCase
 
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
     public function test_can_see_all_categories_if_user_has_permission(): void
     {

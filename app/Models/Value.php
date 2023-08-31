@@ -19,8 +19,6 @@ class Value extends Model
 
     /**
      * The option that owns this value
-     *
-     * @return BelongsTo
      */
     public function option(): BelongsTo
     {

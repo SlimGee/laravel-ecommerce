@@ -5,13 +5,13 @@ namespace Tests\Feature\Http\Controllers;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class ProductControllerTest extends TestCase
 {
     use RefreshDatabase;
+
     public function test_index_method_returns_a_view()
     {
         $response = $this->actingAs($this->superAdminUser())->get(

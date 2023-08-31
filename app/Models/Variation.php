@@ -20,8 +20,6 @@ class Variation extends Model
 
     /**
      * Get the options that belong to this variant
-     *
-     * @return BelongsTo
      */
     public function option(): BelongsTo
     {
@@ -30,8 +28,6 @@ class Variation extends Model
 
     /**
      * Get the products that belong to this variant
-     *
-     * @return BelongsToMany
      */
     public function products(): BelongsToMany
     {
