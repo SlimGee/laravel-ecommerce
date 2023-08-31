@@ -8,7 +8,6 @@ use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Spatie\QueryBuilder\AllowedFilter;
 use Spatie\QueryBuilder\QueryBuilder;
@@ -27,8 +26,6 @@ class CategoryController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @return Renderable
      */
     public function index(): Renderable
     {
@@ -45,8 +42,6 @@ class CategoryController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return Renderable
      */
     public function create(): Renderable
     {
@@ -59,9 +54,6 @@ class CategoryController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param StoreCategoryRequest $request
-     * @return RedirectResponse
      */
     public function store(StoreCategoryRequest $request): RedirectResponse
     {
@@ -75,7 +67,6 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Category $category
      * @return Response
      */
     public function show(Category $category)
@@ -85,9 +76,6 @@ class CategoryController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param Category $category
-     * @return Renderable
      */
     public function edit(Category $category): Renderable
     {
@@ -101,10 +89,6 @@ class CategoryController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param UpdateCategoryRequest $request
-     * @param Category $category
-     * @return RedirectResponse
      */
     public function update(
         UpdateCategoryRequest $request,
@@ -119,9 +103,6 @@ class CategoryController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param Category $category
-     * @return RedirectResponse
      */
     public function destroy(Category $category): RedirectResponse
     {

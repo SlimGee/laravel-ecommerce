@@ -13,7 +13,6 @@ use App\Models\Product;
 use Chefhasteeth\Pipeline\Pipeline;
 use Exception;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Http\File;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -42,8 +41,6 @@ class ProductController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return Renderable
      */
     public function create(): Renderable
     {
@@ -55,8 +52,8 @@ class ProductController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreProductRequest $request
      * @return RedirectResponse
+     *
      * @throws Exception
      */
     public function store(StoreProductRequest $request)
@@ -69,26 +66,26 @@ class ProductController extends Controller
                     ->filter(),
             )
             ->through([
-                fn($passable) => Product::create(
+                fn ($passable) => Product::create(
                     $passable
                         ->except(['images', 'options', 'variations'])
                         ->all(),
                 ),
-                fn($passable) => LinkOption::run(
+                fn ($passable) => LinkOption::run(
                     $passable,
                     $request->validated('options', []),
                 ),
-                fn($passable) => AttachImages::run(
+                fn ($passable) => AttachImages::run(
                     $passable,
                     $request->validated('images', []),
                 ),
-                fn($passable) => AttachVariations::run(
+                fn ($passable) => AttachVariations::run(
                     $passable,
                     $request->validated('variations', []),
                 ),
             ])
             ->then(
-                fn() => to_route('admin.products.index')->with(
+                fn () => to_route('admin.products.index')->with(
                     'success',
                     'Product was successfully created',
                 ),
@@ -98,7 +95,6 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Product $product
      * @return Response
      */
     public function show(Product $product)
@@ -109,7 +105,6 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Product $product
      * @return Renderable
      */
     public function edit(Product $product)
@@ -125,14 +120,12 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param UpdateProductRequest $request
-     * @param Product $product
      * @return RedirectResponse
+     *
      * @throws Exception
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-
         return Pipeline::make()
             ->send(
                 $request
@@ -150,21 +143,21 @@ class ProductController extends Controller
 
                     return $product;
                 },
-                fn($passable) => LinkOption::run(
+                fn ($passable) => LinkOption::run(
                     $passable,
                     $request->validated('options', []),
                 ),
-                fn($passable) => AttachImages::run(
+                fn ($passable) => AttachImages::run(
                     $passable,
                     $request->validated('images', []),
                 ),
-                fn($passable) => AttachVariations::run(
+                fn ($passable) => AttachVariations::run(
                     $passable,
                     $request->validated('variations', []),
                 ),
             ])
             ->then(
-                fn() => to_route('admin.products.index')->with(
+                fn () => to_route('admin.products.index')->with(
                     'success',
                     'Product was successfully updated',
                 ),
@@ -174,7 +167,6 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Product $product
      * @return RedirectResponse
      */
     public function destroy(Product $product)

@@ -8,8 +8,6 @@ class StoreProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -18,17 +16,13 @@ class StoreProductRequest extends FormRequest
 
     /**
      * Prepare input for validation
-     *
-     * @return void
      */
     protected function prepareForValidation(): void
     {
         $this->merge([
-            'track_quantity' =>
-                $this->has('track_quantity') &&
+            'track_quantity' => $this->has('track_quantity') &&
                 $this->input('track_quantity') == 'on',
-            'sell_out_of_stock' =>
-                $this->has('sell_out_of_stock') &&
+            'sell_out_of_stock' => $this->has('sell_out_of_stock') &&
                 $this->input('sell_out_of_stock') == 'on',
         ]);
     }
@@ -61,7 +55,7 @@ class StoreProductRequest extends FormRequest
             'canonical_url' => 'sometimes|nullable|string|max:255|url|active_url',
             'seo_title' => 'sometimes|nullable|string|max:255',
             'seo_description' => 'sometimes|nullable|string|max:255',
-            'seo_keywords' => 'sometimes|nullable|string|max:255'
+            'seo_keywords' => 'sometimes|nullable|string|max:255',
         ];
     }
 }

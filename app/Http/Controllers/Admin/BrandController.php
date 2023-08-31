@@ -24,9 +24,6 @@ class BrandController extends Controller
 
     /**
      * Display a listing of the resource.
-     *
-     * @param Request $request
-     * @return Renderable
      */
     public function index(Request $request): Renderable
     {
@@ -42,8 +39,6 @@ class BrandController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return Renderable
      */
     public function create(): Renderable
     {
@@ -52,9 +47,6 @@ class BrandController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param StoreBrandRequest $request
-     * @return RedirectResponse
      */
     public function store(StoreBrandRequest $request): RedirectResponse
     {
@@ -69,7 +61,6 @@ class BrandController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Brand  $brand
      * @return \Illuminate\Http\Response
      */
     public function show(Brand $brand)
@@ -79,9 +70,6 @@ class BrandController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param Brand $brand
-     * @return Renderable
      */
     public function edit(Brand $brand): Renderable
     {
@@ -92,10 +80,6 @@ class BrandController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param UpdateBrandRequest $request
-     * @param Brand $brand
-     * @return RedirectResponse
      */
     public function update(
         UpdateBrandRequest $request,
@@ -111,9 +95,6 @@ class BrandController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param Brand $brand
-     * @return RedirectResponse
      */
     public function destroy(Brand $brand): RedirectResponse
     {

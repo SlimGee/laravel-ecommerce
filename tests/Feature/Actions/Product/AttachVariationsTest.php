@@ -2,8 +2,6 @@
 
 namespace Tests\Feature\Actions\Product;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class AttachVariationsTest extends TestCase

@@ -20,8 +20,6 @@ class Option extends Model
 
     /**
      * Get the products that belong to this option
-     *
-     * @return BelongsToMany
      */
     public function products(): BelongsToMany
     {
@@ -30,8 +28,6 @@ class Option extends Model
 
     /**
      * Get the values that belong to this option
-     *
-     * @return HasMany
      */
     public function values(): HasMany
     {
@@ -40,8 +36,6 @@ class Option extends Model
 
     /**
      * Get the variants that belong to this option
-     *
-     * @return HasMany
      */
     public function variations(): HasMany
     {

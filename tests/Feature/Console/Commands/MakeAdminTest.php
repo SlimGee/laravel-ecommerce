@@ -12,8 +12,6 @@ class MakeAdminTest extends TestCase
 
     /**
      * A basic feature test example.
-     *
-     * @return void
      */
     public function test_can_make_admin_user_even_if_user_does_not_exist(): void
     {
@@ -57,7 +55,7 @@ class MakeAdminTest extends TestCase
                 $user->email,
             )
             ->expectsOutput(
-                'User ' . $user->email . ' now has full access to your site.',
+                'User '.$user->email.' now has full access to your site.',
             );
     }
 }

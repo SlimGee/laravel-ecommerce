@@ -17,7 +17,6 @@ class ImageController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param StoreMediaRequest $request
      * @return Response
      */
     public function store(StoreMediaRequest $request)
@@ -30,14 +29,13 @@ class ImageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Request $request
      * @return StreamedResponse
      */
     public function show(Request $request)
     {
         $path = $request->query('path', '');
 
-        if (!Storage::exists($path)) {
+        if (! Storage::exists($path)) {
             abort(404);
         }
 
@@ -50,7 +48,6 @@ class ImageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Request $request
      * @return Response
      */
     public function destroy(Request $request)

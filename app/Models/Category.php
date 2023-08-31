@@ -19,13 +19,11 @@ class Category extends Model
 
     /**
      * The attributes that are not mass assignable.
+     *
      * @var array
      */
     protected $guarded = [];
 
-    /**
-     * @return SlugOptions
-     */
     public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
@@ -35,8 +33,6 @@ class Category extends Model
 
     /**
      * Get the indexable data array for the model.
-     *
-     * @return array
      */
     public function toSearchableArray(): array
     {
@@ -48,10 +44,6 @@ class Category extends Model
 
     /**
      * Scope a query to only include listings that are returned by scout
-     *
-     * @param Builder $query
-     * @param string $search
-     * @return Builder
      */
     public function scopeWhereScout(Builder $query, string $search): Builder
     {
@@ -65,8 +57,6 @@ class Category extends Model
 
     /**
      * Get the parent category.
-     *
-     * @return BelongsTo
      */
     public function parent(): BelongsTo
     {
@@ -75,8 +65,6 @@ class Category extends Model
 
     /**
      * Get the child categories.
-     *
-     * @return HasMany
      */
     public function children(): HasMany
     {
@@ -85,8 +73,6 @@ class Category extends Model
 
     /**
      * The products that belong to this category
-     *
-     * @return HasMany
      */
     public function products(): HasMany
     {

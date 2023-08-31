@@ -5,18 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreRoleRequest;
 use App\Http\Requests\UpdateRoleRequest;
+use App\Models\Role;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Spatie\Permission\Models\Permission;
-use App\Models\Role;
 
 class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
-     * @return Renderable
      */
     public function index(): Renderable
     {
@@ -29,8 +27,6 @@ class RoleController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return Renderable
      */
     public function create(): Renderable
     {
@@ -39,9 +35,6 @@ class RoleController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param StoreRoleRequest $request
-     * @return RedirectResponse
      */
     public function store(StoreRoleRequest $request): RedirectResponse
     {
@@ -55,7 +48,6 @@ class RoleController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Role $role
      * @return Response
      */
     public function show(Role $role)
@@ -65,9 +57,6 @@ class RoleController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     *
-     * @param Role $role
-     * @return Renderable
      */
     public function edit(Role $role): Renderable
     {
@@ -81,10 +70,6 @@ class RoleController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param UpdateRoleRequest $request
-     * @param Role $role
-     * @return RedirectResponse
      */
     public function update(
         UpdateRoleRequest $request,
@@ -99,9 +84,6 @@ class RoleController extends Controller
 
     /**
      * Remove the specified resource from storage.
-     *
-     * @param Role $role
-     * @return RedirectResponse
      */
     public function destroy(Role $role): RedirectResponse
     {

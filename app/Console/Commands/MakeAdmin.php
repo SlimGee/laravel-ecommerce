@@ -29,21 +29,19 @@ class MakeAdmin extends Command
 
     /**
      * Execute the console command.
-     *
-     * @return int
      */
     public function handle(): int
     {
         $user = $this->getUserInfo();
 
-        if (!$user) {
+        if (! $user) {
             return 0;
         }
 
         $this->assignRole($user);
 
         $this->info(
-            'User ' . $user->email . ' now has full access to your site.',
+            'User '.$user->email.' now has full access to your site.',
         );
 
         return 1;
@@ -51,8 +49,6 @@ class MakeAdmin extends Command
 
     /**
      * Get the user information from the user.
-     *
-     * @return bool|User
      */
     public function getUserInfo(): bool|User
     {
@@ -62,7 +58,7 @@ class MakeAdmin extends Command
 
         $user = User::where('email', $email)->first();
 
-        if (!is_null($user)) {
+        if (! is_null($user)) {
             return $user;
         }
 
@@ -113,9 +109,6 @@ class MakeAdmin extends Command
 
     /**
      * Assign the super admin role to the user
-     *
-     * @param User $user
-     * @return void
      */
     public function assignRole(User $user): void
     {

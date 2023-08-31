@@ -9,8 +9,6 @@ class StoreOptionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
-     *
-     * @return bool
      */
     public function authorize(): bool
     {
@@ -27,8 +25,7 @@ class StoreOptionRequest extends FormRequest
         return [
             'option.name' => 'required|string',
             'option.values' => 'required|array|min:1',
-            'option.values.*' =>
-                'sometimes|nullable|string|distinct:ignore_case|max:255',
+            'option.values.*' => 'sometimes|nullable|string|distinct:ignore_case|max:255',
         ];
     }
 
@@ -39,15 +36,13 @@ class StoreOptionRequest extends FormRequest
             'name' => $this->option['name'],
             'values' => collect($this->option['values'])
                 ->filter()
-                ->map(fn($value) => ['value' => $value])
+                ->map(fn ($value) => ['value' => $value])
                 ->toArray(),
         ]);
     }
 
     /**
      * Get the error messages for the defined validation rules.
-     *
-     * @return array
      */
     public function messages(): array
     {

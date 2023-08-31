@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
+use App\Null\MediaAlly\DefaultMedia;
 use CloudinaryLabs\CloudinaryLaravel\MediaAlly;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Support\Collection;
 use Laravel\Scout\Searchable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
@@ -16,7 +18,9 @@ class Product extends Model
 {
     use HasFactory;
     use HasSlug;
-    use MediaAlly;
+    use MediaAlly {
+        MediaAlly::fetchAllMedia as fetchMedia;
+    }
     use Searchable;
 
     /**
@@ -35,8 +39,6 @@ class Product extends Model
 
     /**
      * Get the category that own this product
-     *
-     * @return BelongsTo
      */
     public function category(): BelongsTo
     {
@@ -45,8 +47,6 @@ class Product extends Model
 
     /**
      * Get the options that belong to this product
-     *
-     * @return BelongsToMany
      */
     public function options(): BelongsToMany
     {
@@ -55,8 +55,6 @@ class Product extends Model
 
     /**
      * Get the variations that belong to this product
-     *
-     * @return BelongsToMany
      */
     public function variations(): BelongsToMany
     {
@@ -79,10 +77,6 @@ class Product extends Model
 
     /**
      * Scope a query to only include listings that are returned by scout
-     *
-     * @param Builder $query
-     * @param string $search
-     * @return Builder
      */
     public function scopeWhereScout(Builder $query, string $search): Builder
     {
@@ -92,5 +86,27 @@ class Product extends Model
                 ->get()
                 ->pluck('id'),
         );
+    }
+
+    /**
+     * Fetch all media that belong to this product
+     */
+    public function media(): Collection
+    {
+        $media = $this->fetchMedia();
+
+        if ($media->count() < 1) {
+            return collect([new DefaultMedia]);
+        }
+
+        return $media;
+    }
+
+    /**
+     * @see Product::media()
+     */
+    public function fetchAllMedia(): Collection
+    {
+        return $this->media();
     }
 }

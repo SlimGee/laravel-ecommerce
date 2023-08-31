@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\GeneralSettingsController;
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\LegalSettingsController;
+use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\RolePermissionController;
@@ -13,8 +14,8 @@ use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserPermissionController;
 use App\Http\Controllers\Admin\UserRoleController;
-use App\Http\Controllers\Admin\OptionController;
 use App\Http\Controllers\Admin\VariationController;
+use App\Http\Controllers\HomeController as FrontendHomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -78,7 +79,10 @@ Route::prefix('admin')
             'settings.general.update',
         );
 
-Route::get('/settings/legal', [LegalSettingsController::class, 'index'])->name('settings.legal.show');
-Route::patch('/settings/legal', [LegalSettingsController::class, 'update'])->name('settings.legal.update');
+        Route::get('/settings/legal', [LegalSettingsController::class, 'index'])->name('settings.legal.show');
+        Route::patch('/settings/legal', [LegalSettingsController::class, 'update'])->name('settings.legal.update');
     });
 
+Route::group([], static function () {
+    Route::get('/', [FrontendHomeController::class, 'index'])->name('home.index');
+});
